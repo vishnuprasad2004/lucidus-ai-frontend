@@ -12,18 +12,20 @@ export default function Home() {
     const [messages, setMessages] = useState([
         { text: "Hello!", isUser: false },
         { text: "Hi there!", isUser: true },
-        { text: "Hello!", isUser: false },
-        { text: "Hi there!", isUser: true },
-        { text: "Hi there!", isUser: true },
-        { text: "Hi there!", isUser: true },
-        { text: "Hi there!", isUser: true },
-        { text: "Hi there!", isUser: true },
         { text: "Hi there!", isUser: true },
     ]);
     
     
     function handleSubmit(): import("react").FormEventHandler<HTMLFormElement> | undefined {
         throw new Error("Function not implemented.");
+    }
+
+
+    function onSendMessage(text: string) {
+        setMessages((prev) => [
+            ...prev,
+            { text, isUser: true },
+        ]);
     }
 
 
@@ -68,9 +70,9 @@ export default function Home() {
 
                 {/* chat input fields */}
                 <div className=" w-full flex flex-col justify-center align-middle">
-                    <form action="" method="post" className="">
-                        <ChatInput/>
-                    </form>
+                        <ChatInput onSendMessage={onSendMessage}/>
+                    {/* <form action="" method="post" className="">
+                    </form> */}
                     <span className="pb-2 text-center text-xs font-semibold text-neutral-600">This version is under development mode, hence in this version the history won't be stored. For more info <Link href="/docs" className="text-cyan-600">visit our docs.</Link></span>
                 </div>
             </div>
